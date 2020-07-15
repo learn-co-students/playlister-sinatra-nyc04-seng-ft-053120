@@ -1,3 +1,4 @@
+require 'rack-flash'
 class SongsController < ApplicationController
 
     get '/songs' do
@@ -12,5 +13,10 @@ class SongsController < ApplicationController
     get '/songs/:slug' do
         @song = Song.find_by_slug(params[:slug])
         erb :'/songs/show'
+    end
+
+    post '/songs' do
+        @song = Song.create(params[:song])
+        erb :'/song/show'
     end
 end
